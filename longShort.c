@@ -1,15 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int getLength(char line[])//just a get length function
-{
-    int length = 0;
-    while(line[length] != '\n' || line[length] != '\0')//while not the end of line character or new line
-    {
-        length++;
-    }
-    return length;
-}
+#include <ctype.h>
+
 int main(int argc, char * argv[])
 {
     if(argc < 4)
@@ -31,8 +24,21 @@ int main(int argc, char * argv[])
 
     while(fgets(line,40,input) != NULL)
     {
-        //printf("%s",line);
-        fprintf(shortWrite, "%s", line);
+        if(strlen(line) < 20)
+        {
+            for(int i = 0; i < strlen(line); i++)
+            {
+                fprintf(shortWrite,"%c",toupper(line[i]));
+            }
+        }
+        else
+        {
+            for(int j = 0; j < strlen(line); j++)
+            {
+                //printf("%c", tolower(line[j]));
+                fprintf(longWrite,"%c",(line[j]));
+            }
+        }
         
     }
     return 0;
